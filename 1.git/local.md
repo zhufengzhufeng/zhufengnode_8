@@ -100,3 +100,44 @@ git rm --cached filename
 ```
 git rm -force 文件的名字
 ```
+
+## 从版本库拉回代码 回滚 回到过去
+git log 查看版本号
+```
+git reset --hard 版本号
+```
+## 在回到未来
+通过git reflog 查看未来的版本，使用reset回到未来
+```
+git reflog
+```
+
+## 创建仓库后需要关联远程仓库
+```
+git remote add origin '仓库的地址'
+```
+
+## 推送到远程仓库
+```
+git push origin master
+```
+> -u的意思是upstream 如果下次再提交可以直接使用git push
+
+
+## 从工作区 直接提交到历史区（必须走一下过渡区）
+```
+git commit -a -m"add 7788"
+```
+## 有冲突我们需要先把最新的拉下来
+先使用git fetch拉下来 我们可以先比较一下不同在合并
+```
+git fetch
+git merge
+```
+> 解决冲突 去掉>>>>  ==== <<<< 保存剩余的再次提交即可
+git pull  = get fetch + git merge
+
+
+
+
+
