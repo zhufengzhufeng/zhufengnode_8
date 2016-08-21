@@ -61,3 +61,17 @@ npm adduser
 npm publish
 ```
 - 可以让别人进行下载
+
+
+## 切换源
+```
+npm install nrm -g
+```
+## 查看所有源
+```
+nrm ls
+```
+## 使用源
+```
+nrm use taobao
+```
