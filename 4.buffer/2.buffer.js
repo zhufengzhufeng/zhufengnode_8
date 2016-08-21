@@ -87,9 +87,30 @@ console.log(newBuffer.toString());
 
 //我们要实现一个buffer方法
 Buffer.myconcat = function (list,totalLength) {
-    
+    //list是多个buffer的集合
+    //把每一个小buffer拷贝到大buffer
+    if(list.length==1){
+        return list[0];
+    }
+    if(typeof totalLength=='undefined'){
+        //手动维护长度
+        totalLength = 0;
+        for(var j= 0;j<list.length;j++){
+            totalLength += list[j].length; //每一个buffer的长度累加算出总长度
+        }
+    }
+    //我们已经拥有长度，需要将每一项粘贴进去
+    var buffer = new Buffer(totalLength);
+    //将每一个buffer拷贝到buffer中
+    var index = 0;
+    list.forEach(function (item) {
+        item.copy(buffer,index)//每次拷贝时索引是递增的
+        index+=item.length;
+    })
+    return buffer.slice(0,index); //截取掉想要的内容
+    //返回大buffer
 };
-Buffer.myconcat([buffer1,buffer2],100);
+console.log(Buffer.myconcat([buffer1,buffer2],100).toString())
 
 
 
