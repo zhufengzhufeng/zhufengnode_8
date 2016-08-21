@@ -106,11 +106,14 @@ Buffer.myconcat = function (list,totalLength) {
     list.forEach(function (item) {
         item.copy(buffer,index)//每次拷贝时索引是递增的
         index+=item.length;
-    })
+    });
     return buffer.slice(0,index); //截取掉想要的内容
     //返回大buffer
 };
-console.log(Buffer.myconcat([buffer1,buffer2],100).toString())
+console.log(Buffer.myconcat([buffer1,buffer2],100).toString());
+// 8.判断是不是buffer
+console.log(Buffer.isBuffer(new Buffer(3)));
+
 
 
 
