@@ -114,6 +114,6 @@ console.log(Buffer.myconcat([buffer1,buffer2],100).toString());
 // 8.判断是不是buffer
 console.log(Buffer.isBuffer(new Buffer(3)));
 
-
-
+//parseInt 将任意进制转换成10进制
+//toString 将任意进制转换成任意进制
 
