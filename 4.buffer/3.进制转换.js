@@ -25,7 +25,6 @@ console.log(buffer); //e7 8f a0 此时是16进制
 console.log((0xe7).toString(2));
 console.log((0x8f).toString(2));
 console.log((0xa0).toString(2));
-
 //11100111   10001111   10100000 都大于64
 //转换成小于64的
 //规则:将所有的2进制进行拼接，每隔6位分割 前面加00
