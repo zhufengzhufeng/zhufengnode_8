@@ -49,7 +49,7 @@ Event.prototype.removeListener = function (eventName,callback) {
     //过滤掉我们要移除的函数
     //filter是数组的方法 map  filter forEach find
     this._events[eventName] = this._events[eventName].filter(function (fn) {
-       return fn!=callback&&fn.listen!=callback;// 返回false表示留下返回true表示移除掉
+       return fn!=callback&&fn.listen!=callback;// 返回true表示留下返回false表示移除掉
     });
 };
 
