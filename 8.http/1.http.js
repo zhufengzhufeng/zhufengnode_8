@@ -20,7 +20,6 @@ http.createServer(function (req,res) {
     })*/
     fs.createReadStream('./1.html').pipe(res);
     //pipe方法相当于write  write   end
-
 }).listen(8080); //指定端口号，默认localhost
 //服务端的特点  特定ip 特定端口
 
