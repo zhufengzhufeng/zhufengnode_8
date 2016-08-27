@@ -30,15 +30,18 @@ Event.prototype.emit = function (eventName) {
 Event.prototype.removeListener = function (eventName,callback) {
     //通过属性名取出对应的数组将其和callback相同的移除掉
     //过滤掉我们要移除的函数
+    //filter是数组的方法 map  filter forEach find
     this._events[eventName] = this._events[eventName].filter(function (fn) {
-       return fn!=callback
-    })
+       return fn!=callback;// 返回false表示留下返回true表示移除掉
+    });
 };
 
 var e = new Event();
 function handsome(who) {
     console.log(who+'很英俊');
 }
-e.on('很帅',handsome);
-e.removeListener('很帅',handsome)
+e.once('很帅',handsome);
+// e.removeListener('很帅',handsome)
 e.emit('很帅','他');
+e.emit('很帅','他');
+//once方法 多次触发只触发一次，就是绑定后执行一次 ，在将自己移除掉
