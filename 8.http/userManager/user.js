@@ -37,30 +37,37 @@ function serialize(myform) {
 btn.addEventListener('click',function () {
     var result = serialize(myform);
     var xhr = new XMLHttpRequest();
-    xhr.open('post','/reg',true);
+    xhr.open('post','/user',true);
     xhr.setRequestHeader('Content-Type','application/json');
     //xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
     xhr.responseType='json'; //设置我们响应回来的类型为json类型
     xhr.onload = function () {
         //如果类型为json则不能使用responseText
-        console.log(xhr.response.length);
         var str ='';
-        xhr.response.forEach(function (item) {
-            console.log(item);
-            str+=` <li class="list-group-item">${item.username} ${item.password}</li>`
+        xhr.response.forEach(function (item,index) {
+            str+=` <li class="list-group-item">${item.username} ${item.password}<button class="btn btn-danger" onclick="remove(${index})">删除</button></li>`
         });
         document.querySelector('.list-group').innerHTML = str;
     };
-
-
     xhr.send(JSON.stringify(result));//send里传递的是字符串 {}   [object Object]
-
-
 },false);
-
+function remove(index) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('delete','/user?id='+index,true);
+    xhr.responseType='json';
+    xhr.onload = function () {
+        var str ='';
+        xhr.response.forEach(function (item,index) {
+            str+=` <li class="list-group-item">${item.username} ${item.password}<button class="btn btn-danger" onclick="remove(${index})">删除</button></li>`
+        });
+        document.querySelector('.list-group').innerHTML = str;
+    };
+    xhr.send();
+}
 
 btn.addEventListener('click',function () {
     var result = serialize(myform);
     console.log(result);
 },false);
 
+//作业 就是完善一个对用户的增删改查
