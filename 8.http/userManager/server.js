@@ -18,7 +18,11 @@ http.createServer(function (req,res) {
         req.on('end',function () {
             user.push(querystring.parse(result));
             //此处应跳转页面
-
+            //302；
+            res.statusCode = 302;
+            //设置跳转的路径
+            res.setHeader('Location','/home.html');
+            res.end('hello')
         });
         //解析对象 querystring
         //form表单获取的数据格式为username=hello&password=zfpx
