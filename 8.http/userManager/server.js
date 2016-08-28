@@ -16,13 +16,16 @@ http.createServer(function (req,res) {
             result+=data;
         });
         req.on('end',function () {
-            user.push(querystring.parse(result));
-            //此处应跳转页面
-            //302；
-            res.statusCode = 302;
-            //设置跳转的路径
-            res.setHeader('Location','/home.html');
-            res.end('hello')
+            //取头部时要全部小写
+            if(req.headers['content-type']=='application/json'){
+                console.log(result);
+                user.push(JSON.parse(result));
+                
+            }else{
+                user.push(querystring.parse(result));
+
+            }
+            res.end(JSON.stringify(user));
         });
         //解析对象 querystring
         //form表单获取的数据格式为username=hello&password=zfpx
@@ -41,3 +44,13 @@ http.createServer(function (req,res) {
         }
     }
 }).listen(3000);
+
+
+
+//此处应跳转页面
+//302；
+/*
+res.statusCode = 302;
+//设置跳转的路径
+res.setHeader('Location','/home.html');
+res.end('hello')*/
