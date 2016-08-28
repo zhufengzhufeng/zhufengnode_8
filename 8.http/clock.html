@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="clock">
+
+</div>
+<script>
+    function getServerDate() {
+        //发送ajax请求
+        //1.创建xhr对象
+        var xhr = new XMLHttpRequest();
+        //2.打开
+        xhr.open('GET','/clock',true); //是否异步
+        xhr.onload = function () {
+             clock.innerHTML = xhr.response;
+        };
+        xhr.send();
+    }
+    getServerDate();
+    setInterval(getServerDate,1000);
+</script>
+
+
+
+</body>
+</html>
