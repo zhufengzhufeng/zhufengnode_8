@@ -11,7 +11,7 @@ http.createServer(function (request,response) {
         var result = '';
         req.on('data',function (data) {
             result+=data;
-        })
+        });
         req.on('end',function () {
             //result为请求的结果 我们要匹配所有h3
             //.是不包括/n的
@@ -23,9 +23,8 @@ http.createServer(function (request,response) {
             tmpl = tmpl.replace(/<body[\s\S]*?<\/body>/g,function () {
                 return `<body>${matchers.join('')}</body>`
             });
-            console.log(tmpl);
             response.end(tmpl);// 响应回给我们自己的服务器端
-        })
+        });
     })
 
 
