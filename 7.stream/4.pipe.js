@@ -9,5 +9,3 @@ function copy(source,target) {
     rs.pipe(ws);
 }
 copy('./1.txt','./2.txt');
-
-
