@@ -4,7 +4,7 @@ var app = express();
 
 app.listen(8888);
 
-app.use('/ad',function (req,res,next) {
+app.use(function (req,res,next) {
     console.log('中间');
     next();
 });
