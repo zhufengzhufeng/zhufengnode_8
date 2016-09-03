@@ -16,3 +16,5 @@ params.forEach(function (item,index) {
     obj[item] = arr[index+1];
 });
 console.log(obj);
+
+
