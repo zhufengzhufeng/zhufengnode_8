@@ -34,27 +34,11 @@ function express() {
                         next();
                     }
                 }else{
-                    //路由 如果当前的路由有查询参数
-                    if(route.params){
-                        //看是否能匹配上
-                        //用路径正则去匹配，我们的pathname
-                        var matchers = pathname.match(new RegExp(route.path));
-                        if(matchers){
-                            var obj = {}; //创建params对象
-                            route.params.forEach(function (item,index) {
-                                obj[item] = matchers[index+1];
-                            });
-                            req.params = obj;
-                            route.fn(req,res);
-                        }else{
-                            next();
-                        }
+                    //路由
+                    if((route.method==method||route.method=='all')&&(route.path==pathname||route.path == '*')){
+                        route.fn(req,res);
                     }else{
-                        if((route.method==method||route.method=='all')&&(route.path==pathname||route.path == '*')){
-                            route.fn(req,res);
-                        }else{
-                            next();
-                        }
+                        next();
                     }
                 }
             }
@@ -68,18 +52,7 @@ function express() {
     var methods = ['get','post','delete','put','options','all'];
     methods.forEach(function (method) {
         app[method] = function (path,fn) {
-            //先判断是否有: 如果有增加params属性
             var config = {method:method,path:path,fn:fn};
-            if(path.includes(":")){
-                var params = [];
-                //把当前的路径替换成正则，好用来匹配真实的访问路径
-                config.path = path.replace(/:([^\/]+)/g,function () {
-                    params.push(arguments[1]);
-                    return '([^\/]+)';
-                });
-                //增加查询参数
-                config.params = params;
-            }
             app.routes.push(config);
         };
     });
