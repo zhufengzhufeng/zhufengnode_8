@@ -9,12 +9,12 @@ function express() {
         var pathname = urlObj.pathname;
         var route = app.routes.find(function (item) {
             //如果为true返回当前这一项item
-            return item.method==method&&item.path==pathname;
+            return (item.method==method||item.method=='all')&&(item.path==pathname||item.path == '*');
         });
         if(route){
             route.fn(req,res);
         }else{
-            res.end(`Cannot ${method} ${pathname}`);
+            res.end(`Cannot${method}${pathname}`);
         }
     };
     //当express函数执行后返回app函数
@@ -25,7 +25,7 @@ function express() {
     //声明get方法 对应的当前的请求路径和回掉函数
     app.routes = [];
     //构造一个所有方法的数组
-    var methods = ['get','post','delete','put','options'];
+    var methods = ['get','post','delete','put','options','all'];
     //添加所有method的方法
     methods.forEach(function (method) {
         app[method] = function (path,fn) {
