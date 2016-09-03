@@ -24,12 +24,17 @@ function express() {
     };
     //声明get方法 对应的当前的请求路径和回掉函数
     app.routes = [];
-    app.get = function (path,fn) {
-        //每次调用get方法时将path，fn，method 都存起来
-        //当访问时候匹配path和method 如果匹配到执行fn
-        var config = {method:'get',path:path,fn:fn};
-        app.routes.push(config);
-    };
+    //构造一个所有方法的数组
+    var methods = ['get','post','delete','put','options'];
+    //添加所有method的方法
+    methods.forEach(function (method) {
+        app[method] = function (path,fn) {
+            //每次调用get方法时将path，fn，method 都存起来
+            //当访问时候匹配path和method 如果匹配到执行fn
+            var config = {method:method,path:path,fn:fn};
+            app.routes.push(config);
+        };
+    });
     return app;
 }
 //导出一个函数名字叫express

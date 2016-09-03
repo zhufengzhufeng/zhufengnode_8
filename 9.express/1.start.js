@@ -8,7 +8,15 @@ var app = express(); //app还是一个函数
 app.get('/',function (req,res) {
     res.end('hello zfpx');
 });
-
+app.post('/',function (req,res) {
+    res.end('post hello zfpx');
+});
+app.delete('/',function (req,res) {
+    res.end('delete hello zfpx');
+});
+app.put('/',function (req,res) {
+    res.end('put hello zfpx');
+});
 //浏览器发送get请求时 并且路径为/student,在执行函数
 app.get('/student',function (req,res) {
     res.end('hello student');
