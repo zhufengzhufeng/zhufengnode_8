@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/login" method="post">
+    用户名 <input type="text" name="username">
+    <input type="submit" value="登陆">
+</form>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('post','/login',true);
+    xhr.send(JSON.stringify({hello:123}))
+</script>
+
+
+</body>
+</html>

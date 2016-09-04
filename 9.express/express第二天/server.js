@@ -6,7 +6,7 @@ var fs = require('fs');
 //实现一个静态服务
 
 ///css/index.css 会加上引用的路径成为一个绝对路径
-function static(p) {
+/*function static(p) {
     return function (req,res,next) {
         //将访问的路径和我们的绝对路径拼在一起组成完整的路径
         //如果服务器中有这个文件我们读出来写会响应中
@@ -22,12 +22,9 @@ function static(p) {
             next();
         }
     }
-}
-
-app.use(static(__dirname+'/lib'))
-
-
-//app.use(express.static(__dirname+'/lib'));
+}*/
+//app.use(static(__dirname+'/lib'))
+app.use(express.static(__dirname+'/lib'));
 
 //设置模板引擎
 app.set('view engine','html');
