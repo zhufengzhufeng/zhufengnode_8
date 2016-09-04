@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!--处理静态文件-->
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<!--渲染数据，不支持html类型-->
+<%=title%>
+<!--支持渲染html标签-->
+<%-title%>
+<!--嵌套js表达式-->
+<%if(flag){%>
+<div>hello</div>
+<%}else {%>
+<div>world</div>
+<%}%>
+<%arr.forEach(function(item){%>
+<li><%=item%></li>
+<%})%>
+<!--smarty handlebar-->
+<script src="/js/index.js"></script>
+</body>
+</html>
